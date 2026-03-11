@@ -4,15 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // This pulls your .jmx and pom.xml from Git
+                // Pull your .jmx and pom.xml from Git
                 checkout scm
             }
         }
 
-        stage('Run JMeter Tests') {
+        stage('Run JMeter via Maven') {
             steps {
-                // Runs the JMeter Maven Plugin
-                // 'verify' triggers the jmeter-maven-plugin goals
+                // Run JMeter tests using the jmeter-maven-plugin
                 sh 'mvn clean verify'
             }
         }
@@ -20,7 +19,7 @@ pipeline {
 
     post {
         always {
-            // This archives the JMeter HTML report so you can see it in Jenkins
+            // Publish JMeter HTML report
             publishHTML(target: [
                 alwaysLinkToLastBuild: true,
                 keepAll: true,
@@ -29,7 +28,7 @@ pipeline {
                 reportName: 'JMeter Performance Report'
             ])
 
-            // Optional: Archive the raw .jtl log files for debugging
+            // Optional: Archive raw .jtl logs
             archiveArtifacts artifacts: 'target/jmeter/results/*.jtl', allowEmptyArchive: true
         }
     }
