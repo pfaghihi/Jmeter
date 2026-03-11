@@ -1,8 +1,9 @@
 pipeline {
-        agent {
-            docker {
-                image 'maven:3.9.3-jdk-18'
-            }
+    agent {
+        docker {
+            image 'maven:3.9.3-jdk-18'
+        }
+    }
 
     stages {
         stage('Checkout') {
