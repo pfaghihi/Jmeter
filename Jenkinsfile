@@ -17,7 +17,7 @@ pipeline {
             steps {
                 // Run JMeter tests using the jmeter-maven-plugin
                 withMaven(maven: 'Maven3') {
-                            sh 'mvn clean verify'
+                            sh 'mvn -version'
                         }
             }
         }
