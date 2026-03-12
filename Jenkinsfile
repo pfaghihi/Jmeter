@@ -1,31 +1,25 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.3-jdk-18'
-        }
-    }
+    agent any // <--- MAKE SURE THIS SAYS 'any', NOT 'docker'
 
     stages {
         stage('Checkout') {
             steps {
-                // Pull your .jmx and pom.xml from Git
                 checkout scm
             }
         }
 
         stage('Run JMeter via Maven') {
             steps {
-                // Run JMeter tests using the jmeter-maven-plugin
+                // This 'Maven3' must match the name in Global Tool Configuration
                 withMaven(maven: 'Maven3') {
-                            sh 'mvn -version'
-                        }
+                    sh 'mvn clean verify'
+                }
             }
         }
     }
 
     post {
         always {
-            // Publish JMeter HTML report
             publishHTML(target: [
                 alwaysLinkToLastBuild: true,
                 keepAll: true,
@@ -34,7 +28,6 @@ pipeline {
                 reportName: 'JMeter Performance Report'
             ])
 
-            // Optional: Archive raw .jtl logs
             archiveArtifacts artifacts: 'target/jmeter/results/*.jtl', allowEmptyArchive: true
         }
     }
