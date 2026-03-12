@@ -1,10 +1,10 @@
 pipeline {
     agent any
 // This section creates the input field in the Jenkins UI
-    parameters {
-        string(name: 'THREADS', defaultValue: '1', description: 'How many virtual users to run?')
-       // string(name: 'HOST', defaultValue: 'host.docker.internal', description: 'Target Server Host')
-    }
+//     parameters {
+//         string(name: 'THREADS', defaultValue: '1', description: 'How many virtual users to run?')
+//        // string(name: 'HOST', defaultValue: 'host.docker.internal', description: 'Target Server Host')
+//     }
     stages {
         stage('Checkout') {
             steps {
