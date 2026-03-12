@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withMaven(maven: 'Maven3') {
                     // Running with the parameters passed correctly
-                    sh 'mvn clean verify -Djmeter.protocol=http -Djmeter.host=host.docker.internal -Djmeter.port=8080 -Djmeter.threads=2'
+                    sh 'mvn clean verify -Djmeter.protocol=http -Djmeter.host=host.docker.internal -Djmeter.port=9090 -Djmeter.threads=2'
                 }
             }
         }
