@@ -18,6 +18,7 @@ pipeline {
                     // In Jenkins/Linux sh, we don't need the extra quotes for dots
                     // Changed localhost to host.docker.internal for Docker-to-Host connectivity
                     sh 'mvn clean verify -Djmeter.protocol=http -Djmeter.host=host.docker.internal -Djmeter.threads=2'
+
                 }
             }
         }
