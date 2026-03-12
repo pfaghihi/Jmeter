@@ -18,17 +18,5 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            publishHTML(target: [
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'target/jmeter/reports',
-                reportFiles: 'index.html',
-                reportName: 'JMeter Performance Report'
-            ])
 
-            archiveArtifacts artifacts: 'target/jmeter/results/*.jtl', allowEmptyArchive: true
-        }
-    }
 }
