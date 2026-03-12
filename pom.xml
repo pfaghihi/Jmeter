@@ -45,6 +45,11 @@
 
                 <configuration>
                     <generateReports>true</generateReports>
+                    <propertiesUser>
+                        <protocol>${jmeter.protocol}</protocol>
+                        <host>${jmeter.host}</host>
+                        <threads>${jmeter.threads}</threads>
+                    </propertiesUser>
                 </configuration>
 
             </plugin>
